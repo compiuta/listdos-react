@@ -1,44 +1,47 @@
 import React, { useState, useEffect } from "react";
 import Todo from "./Todo";
 
-const testData = [
-  {
-    id: 1,
-    todo: "work",
-    complete: false,
-  },
-  {
-    id: 2,
-    todo: "eat",
-    complete: false,
-  },
-  {
-    id: 3,
-    todo: "sleep",
-    complete: false,
-  },
-];
-
 const App = () => {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [todoValue, setTodoValue] = useState("");
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    if (!localStorage.hasOwnProperty("listdos")) {
-      localStorage.setItem("listdos", JSON.stringify(testData));
-    }
-
+  const fetchData = () => {
     setData(JSON.parse(localStorage.getItem("listdos")));
     setIsLoading(false);
+  };
+
+  const sendData = () => {
+    localStorage.setItem("listdos", JSON.stringify(data));
+  };
+
+  const addTodo = () => {
+    console.log("add");
+  };
+
+  const todoInputChange = (e) => {
+    setTodoValue(e.target.value);
+  };
+
+  useEffect(() => {
+    if (!localStorage.hasOwnProperty("listdos")) {
+      localStorage.setItem("listdos", JSON.stringify([]));
+    }
+
+    fetchData();
   }, []);
 
   return (
     <div className={isLoading ? "loading container" : "container"}>
-      {data.map((data) => {
-        return <Todo key={data.id} {...data} />;
-      })}
+      <div className="listdos">
+        {data.map((data) => {
+          return <Todo key={data.id} {...data} setData={setData} />;
+        })}
+      </div>
+      <input type="text" value={todoValue} onChange={todoInputChange} />
+      <button className="add-todo" onClick={addTodo}>
+        Add Todo
+      </button>
     </div>
   );
 };
