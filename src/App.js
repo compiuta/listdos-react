@@ -11,12 +11,28 @@ const App = () => {
     setIsLoading(false);
   };
 
-  const sendData = () => {
-    localStorage.setItem("listdos", JSON.stringify(data));
+  const sendData = (newData) => {
+    console.log("sending");
+    localStorage.setItem("listdos", JSON.stringify(newData));
+    setData(newData);
+    setIsLoading(false);
   };
 
   const addTodo = () => {
     console.log("add");
+    const newTodo = {
+      id: Date.now() + Math.random(),
+      todo: todoValue,
+      complete: false,
+    };
+
+    const newData = [...data];
+
+    newData.push(newTodo);
+
+    sendData(newData);
+
+    setTodoValue("");
   };
 
   const todoInputChange = (e) => {
