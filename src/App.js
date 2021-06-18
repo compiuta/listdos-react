@@ -50,8 +50,10 @@ const App = () => {
   return (
     <div className={isLoading ? "loading container" : "container"}>
       <div className="listdos">
-        {data.map((data) => {
-          return <Todo key={data.id} {...data} setData={setData} />;
+        {data.map((item) => {
+          return (
+            <Todo key={item.id} {...item} allData={data} sendData={sendData} />
+          );
         })}
       </div>
       <input type="text" value={todoValue} onChange={todoInputChange} />
