@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Todo from "./Todo";
+import pig from "./pig.jpg";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -49,13 +50,25 @@ const App = () => {
 
   return (
     <div className={isLoading ? "loading container" : "container"}>
-      <div className="listdos">
-        {data.map((item) => {
-          return (
-            <Todo key={item.id} {...item} allData={data} sendData={sendData} />
-          );
-        })}
-      </div>
+      {data.length > 0 ? (
+        <div className="listdos">
+          {data.map((item) => {
+            return (
+              <Todo
+                key={item.id}
+                {...item}
+                allData={data}
+                sendData={sendData}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="no-todos">
+          <img src={pig} alt="pig" className="no-todo-img" />
+          <p>Nothing Todo Yet</p>
+        </div>
+      )}
       <input type="text" value={todoValue} onChange={todoInputChange} />
       <button
         className="add-todo"
