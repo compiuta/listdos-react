@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import * as Icon from "react-feather";
 
 const Todo = ({ id, todo, complete, allData, sendData }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [editInputValue, setEditInputValue] = useState(todo);
+  const [isComplete, setIsComeplete] = useState(complete);
+  const getEditedData = () => {
+    const editedData = {
+      id: id,
+      todo: editInputValue,
+      complete: isComplete,
+    };
+
+    const newData = allData.map((item) =>
+      item.id === editedData.id ? editedData : item
+    );
+
+    return newData;
+  };
+
   const deleteTodo = () => {
     const filteredData = allData.filter((item) => item.id !== id);
 
@@ -17,19 +33,22 @@ const Todo = ({ id, todo, complete, allData, sendData }) => {
     setEditInputValue(e.target.value);
   };
 
-  const editTodo = () => {
-    const editedData = {
-      id: id,
-      todo: editInputValue,
-      complete: complete,
-    };
+  const completeTodo = () => {
+    setIsComeplete(!isComplete);
+  };
 
-    const newData = allData.map((item) =>
-      item.id === editedData.id ? editedData : item
-    );
+  const editTodo = () => {
+    const newData = getEditedData();
     sendData(newData);
     toggleEditMode();
   };
+
+  useEffect(() => {
+    if (isComplete !== complete) {
+      const newData = getEditedData();
+      sendData(newData);
+    }
+  }, [isComplete]);
   return (
     <div className={isEditMode ? "todo-container edit-mode" : "todo-container"}>
       {isEditMode ? (
@@ -40,24 +59,29 @@ const Todo = ({ id, todo, complete, allData, sendData }) => {
         />
       ) : (
         <h4 className="todo">
-          {id} {todo}
+          <input
+            type="checkbox"
+            onClick={completeTodo}
+            defaultChecked={isComplete ? "checked" : null}
+          />
+          {todo}
         </h4>
       )}
 
-      <p className={complete ? "complete" : "not-complete"}>
-        {complete ? "complete" : "not-complete"}
+      <p className={isComplete ? "complete" : "not-complete"}>
+        {isComplete ? "complete" : "not-complete"}
       </p>
       <div className="todo-menu">
-        <button className="todo-delete" onClick={deleteTodo}>
-          delete
+        <button title="delete" className="todo-delete" onClick={deleteTodo}>
+          <Icon.Trash />
         </button>
         {isEditMode ? (
           <button className="done" onClick={editTodo}>
             done
           </button>
         ) : (
-          <button className="todo-edit" onClick={toggleEditMode}>
-            edit
+          <button title="edit" className="todo-edit" onClick={toggleEditMode}>
+            <Icon.Edit />
           </button>
         )}
       </div>
