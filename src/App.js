@@ -57,7 +57,11 @@ const App = () => {
         })}
       </div>
       <input type="text" value={todoValue} onChange={todoInputChange} />
-      <button className="add-todo" onClick={addTodo}>
+      <button
+        className="add-todo"
+        onClick={addTodo}
+        disabled={todoValue.replace(/ /g, "") ? "" : "disabled"}
+      >
         Add Todo
       </button>
     </div>
