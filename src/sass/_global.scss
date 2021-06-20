@@ -5,6 +5,7 @@
 body {
   background-color: $steel;
   color: $light;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -12,4 +13,9 @@ body {
 h1,
 h4 {
   margin: 0;
+}
+
+.img-responsive {
+  max-width: 100%;
+  width: 100%;
 }

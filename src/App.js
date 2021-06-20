@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import Todo from "./Todo";
-import pig from "./pig.jpg";
+import Task from "./Task";
+import fish from "./fish.png";
 
 const App = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [todoValue, setTodoValue] = useState("");
+  const [taskValue, setTaskValue] = useState("");
 
   const fetchData = () => {
     setData(JSON.parse(localStorage.getItem("listdos")));
@@ -20,25 +20,25 @@ const App = () => {
     setIsLoading(false);
   };
 
-  const addTodo = () => {
+  const addTask = () => {
     console.log("add");
-    const newTodo = {
+    const newTask = {
       id: Date.now() + Math.random(),
-      todo: todoValue,
+      task: taskValue,
       complete: false,
     };
 
     const newData = [...data];
 
-    newData.push(newTodo);
+    newData.push(newTask);
 
     sendData(newData);
 
-    setTodoValue("");
+    setTaskValue("");
   };
 
-  const todoInputChange = (e) => {
-    setTodoValue(e.target.value);
+  const taskInputChange = (e) => {
+    setTaskValue(e.target.value);
   };
 
   useEffect(() => {
@@ -52,12 +52,26 @@ const App = () => {
   return (
     <>
       <Header />
-      <div className={isLoading ? "loading container" : "container"}>
+      <div
+        className={isLoading ? "loading tasks-container" : "tasks-container"}
+      >
+        <textarea
+          rows="2"
+          value={taskValue}
+          onChange={taskInputChange}
+        ></textarea>
+        <button
+          className="btn add-task"
+          onClick={addTask}
+          disabled={taskValue.replace(/ /g, "") ? "" : "disabled"}
+        >
+          Add Task
+        </button>
         {data.length > 0 ? (
           <div className="listdos">
             {data.map((item) => {
               return (
-                <Todo
+                <Task
                   key={item.id}
                   {...item}
                   allData={data}
@@ -67,19 +81,11 @@ const App = () => {
             })}
           </div>
         ) : (
-          <div className="no-todos">
-            <img src={pig} alt="pig" className="no-todo-img" />
-            <p>Nothing Todo Yet</p>
+          <div className="no-tasks">
+            <h4>No tasks yet</h4>
+            <img src={fish} alt="fish" className="img-responsive" />
           </div>
         )}
-        <input type="text" value={todoValue} onChange={todoInputChange} />
-        <button
-          className="add-todo"
-          onClick={addTodo}
-          disabled={todoValue.replace(/ /g, "") ? "" : "disabled"}
-        >
-          Add Todo
-        </button>
       </div>
     </>
   );

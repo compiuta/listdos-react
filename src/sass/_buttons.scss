@@ -1,5 +1,35 @@
 .btn {
-  background-color: transparent;
-  border: 0;
+  background-color: #fff;
+  border-color: #dbdbdb;
+  border-radius: 6px;
+  border-width: 1px;
+  color: #363636;
   cursor: pointer;
+  justify-content: center;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(0.5em - 1px);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.btn:active {
+  transform: scale(0.99);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
+
+.add-task {
+  background-color: $green;
+  color: $light;
+  font-size: 20px;
+  margin: 10px 0 0 0;
 }
