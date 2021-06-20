@@ -51,43 +51,53 @@ const Task = ({ id, task, complete, allData, sendData }) => {
   }, [isComplete]);
   return (
     <div className={isEditMode ? "task-container edit-mode" : "task-container"}>
-      {isEditMode ? (
-        <input
-          type="text"
-          value={editInputValue}
-          onChange={handleEditInputValue}
-        />
-      ) : (
+      <div className="task-wrapper">
         <h4 className="task">
-          <input
-            type="checkbox"
-            onClick={completeTask}
-            defaultChecked={isComplete ? "checked" : null}
-          />
-          {task}
+          {isEditMode ? (
+            <input
+              type="text"
+              value={editInputValue}
+              onChange={handleEditInputValue}
+            />
+          ) : (
+            <>
+              <input
+                type="checkbox"
+                onClick={completeTask}
+                className="task-check"
+                defaultChecked={isComplete ? "checked" : null}
+              />
+              <span className={isComplete ? "task-complete" : null}>
+                {task}
+              </span>
+            </>
+          )}
         </h4>
-      )}
 
-      <p className={isComplete ? "complete" : "not-complete"}>
-        {isComplete ? "complete" : "not-complete"}
-      </p>
-      <div className="task-menu">
-        <button title="delete" className="btn task-delete" onClick={deleteTask}>
-          <Icon.Trash />
-        </button>
-        {isEditMode ? (
-          <button className="btn done-btn" onClick={editTask}>
-            done
-          </button>
-        ) : (
-          <button
-            title="edit"
-            className="btn task-edit"
-            onClick={toggleEditMode}
-          >
-            <Icon.Edit />
-          </button>
-        )}
+        <div className="task-menu">
+          {isEditMode ? (
+            <button className="btn done-btn" onClick={editTask}>
+              done
+            </button>
+          ) : (
+            <>
+              <button
+                title="delete"
+                className="btn task-delete"
+                onClick={deleteTask}
+              >
+                <Icon.Trash size={19} />
+              </button>
+              <button
+                title="edit"
+                className="btn task-edit"
+                onClick={toggleEditMode}
+              >
+                <Icon.Edit size={19} />
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

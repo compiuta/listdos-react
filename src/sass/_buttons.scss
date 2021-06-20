@@ -6,12 +6,13 @@
   color: #363636;
   cursor: pointer;
   justify-content: center;
-  padding-bottom: calc(0.5em - 1px);
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: calc(0.5em - 1px);
+  padding: 9px 20px;
   text-align: center;
   white-space: nowrap;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
 }
 
 .btn:focus {
@@ -29,7 +30,21 @@
 
 .add-task {
   background-color: $green;
+  border: 0;
   color: $light;
   font-size: 20px;
   margin: 10px 0 0 0;
+}
+
+.add-task:hover {
+  border-color: $green;
+  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+}
+
+.flag {
+  border-radius: 50%;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

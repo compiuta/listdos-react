@@ -56,6 +56,7 @@ const App = () => {
         className={isLoading ? "loading tasks-container" : "tasks-container"}
       >
         <textarea
+          className="task-textarea"
           rows="2"
           value={taskValue}
           onChange={taskInputChange}

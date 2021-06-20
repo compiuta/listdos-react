@@ -1,10 +1,13 @@
 import React from "react";
+import bird from "./bird.png";
 
 const Header = () => {
   return (
     <header className="main-header">
-      <span className="logo">logo</span>
-      <span className="header-category active">all</span>
+      <span className="logo">
+        <img src={bird} alt="" className="img-responsive" />
+      </span>
+      <span className="header-category active">Tasks</span>
     </header>
   );
 };

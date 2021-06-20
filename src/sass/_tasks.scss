@@ -1,8 +1,64 @@
 .tasks-container {
   margin: 10px auto;
   max-width: 900px;
+  padding: 0 15px 15px 15px;
+}
+
+.task-textarea {
+  font-size: 20px;
+}
+
+.listdos {
+  margin: 30px 0 0 0;
 }
 
 .no-tasks {
   text-align: center;
+}
+
+.task-complete {
+  color: $grey;
+  text-decoration: line-through;
+}
+
+.task-wrapper {
+  border-top: 1px solid $grey;
+  padding: 35px 0;
+}
+
+.task {
+  font-size: 18px;
+}
+
+.task-check {
+  cursor: pointer;
+  margin: 0 5px 0 0;
+}
+
+.task-delete,
+.task-edit {
+  background-color: transparent;
+  border: 0;
+  padding: 15px 5px 0 5px;
+}
+
+.task-delete {
+  color: $red;
+}
+
+.task-edit {
+  color: $yellow;
+}
+
+.done-btn {
+  background-color: $green;
+  border: 0;
+  color: $light;
+  font-weight: bold;
+  margin: 10px 0 0 0;
+}
+
+.done-btn:hover {
+  border-color: $green;
+  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
 }
