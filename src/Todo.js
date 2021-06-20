@@ -72,15 +72,19 @@ const Todo = ({ id, todo, complete, allData, sendData }) => {
         {isComplete ? "complete" : "not-complete"}
       </p>
       <div className="todo-menu">
-        <button title="delete" className="todo-delete" onClick={deleteTodo}>
+        <button title="delete" className="btn todo-delete" onClick={deleteTodo}>
           <Icon.Trash />
         </button>
         {isEditMode ? (
-          <button className="done" onClick={editTodo}>
+          <button className="btn done-btn" onClick={editTodo}>
             done
           </button>
         ) : (
-          <button title="edit" className="todo-edit" onClick={toggleEditMode}>
+          <button
+            title="edit"
+            className="btn todo-edit"
+            onClick={toggleEditMode}
+          >
             <Icon.Edit />
           </button>
         )}
