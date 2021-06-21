@@ -54,11 +54,11 @@ const Task = ({ id, task, complete, allData, sendData }) => {
       <div className="task-wrapper">
         <h4 className="task">
           {isEditMode ? (
-            <input
-              type="text"
+            <textarea
+              rows="2"
               value={editInputValue}
               onChange={handleEditInputValue}
-            />
+            ></textarea>
           ) : (
             <>
               <input
@@ -67,7 +67,10 @@ const Task = ({ id, task, complete, allData, sendData }) => {
                 className="task-check"
                 defaultChecked={isComplete ? "checked" : null}
               />
-              <span className={isComplete ? "task-complete" : null}>
+              <span
+                className={isComplete ? "task-complete" : null}
+                onClick={toggleEditMode}
+              >
                 {task}
               </span>
             </>
