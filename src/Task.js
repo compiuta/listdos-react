@@ -43,11 +43,15 @@ const Task = ({ id, task, complete, allData, sendData }) => {
     toggleEditMode();
   };
 
-  useEffect(() => {
+  const toggleComplete = () => {
     if (isComplete !== complete) {
       const newData = getEditedData();
       sendData(newData);
     }
+  };
+
+  useEffect(() => {
+    toggleComplete();
   }, [isComplete]);
   return (
     <div className={isEditMode ? "task-container edit-mode" : "task-container"}>
