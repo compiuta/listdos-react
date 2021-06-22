@@ -13,12 +13,16 @@
 
 .header-category {
   align-items: center;
+  color: $grey;
   display: flex;
   justify-content: center;
   position: relative;
+  text-decoration: none;
   width: 115px;
 }
 
 .header-category.active {
   background-color: $steel;
+  color: $light;
+  font-weight: bold;
 }
