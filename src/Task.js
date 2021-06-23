@@ -11,8 +11,9 @@ const Task = ({ id, task, complete, allData, sendData }) => {
       task: editInputValue,
       complete: isComplete,
     };
+    const newData = { ...allData };
 
-    const newData = allData.map((item) =>
+    newData.data = newData.data.map((item) =>
       item.id === editedData.id ? editedData : item
     );
 
@@ -20,7 +21,9 @@ const Task = ({ id, task, complete, allData, sendData }) => {
   };
 
   const deleteTask = () => {
-    const filteredData = allData.filter((item) => item.id !== id);
+    const filteredData = allData.data.filter((item) => item.id !== id);
+
+    allData.completedTasks--;
 
     sendData(filteredData);
   };
@@ -46,6 +49,13 @@ const Task = ({ id, task, complete, allData, sendData }) => {
   const toggleComplete = () => {
     if (isComplete !== complete) {
       const newData = getEditedData();
+      if (isComplete) {
+        newData.completedTasks++;
+        newData.tasksToComplete--;
+      } else {
+        newData.completedTasks--;
+        newData.tasksToComplete++;
+      }
       sendData(newData);
     }
   };
