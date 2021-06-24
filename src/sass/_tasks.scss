@@ -13,6 +13,7 @@
 }
 
 .no-tasks {
+  margin: 20px 0 0 0;
   text-align: center;
 }
 
@@ -61,4 +62,17 @@
 .done-btn:hover {
   border-color: $green;
   box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+}
+
+.error-page {
+  position: relative;
+}
+
+.error-title {
+  color: $dark;
+  position: absolute;
+  text-align: center;
+  top: 20px;
+  width: 100%;
+  z-index: 1;
 }
