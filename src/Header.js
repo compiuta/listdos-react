@@ -1,42 +1,28 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import bird from "./bird.png";
 
 const Header = () => {
-  const [activeLink, setActiveLink] = useState("home");
-
-  const handleClick = (e) => {
-    console.log(e.currentTarget.getAttribute("data-pagename"));
-
-    setActiveLink(e.currentTarget.getAttribute("data-pagename"));
-  };
   return (
     <header className="main-header">
       <span className="logo">
         <img src={bird} alt="" className="img-responsive" />
       </span>
-      <Link
-        onClick={handleClick}
+      <NavLink
         to="/"
-        data-pagename="home"
-        className={
-          activeLink === "home" ? "header-category active" : "header-category"
-        }
+        exact
+        activeClassName="active"
+        className="header-category"
       >
         Tasks
-      </Link>
-      <Link
-        onClick={handleClick}
-        data-pagename="completed"
+      </NavLink>
+      <NavLink
         to="/completed"
-        className={
-          activeLink === "completed"
-            ? "header-category active"
-            : "header-category"
-        }
+        activeClassName="active"
+        className="header-category"
       >
         Completed
-      </Link>
+      </NavLink>
     </header>
   );
 };
