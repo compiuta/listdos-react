@@ -53,6 +53,14 @@ const TaskList = ({ listType, listCompleted, message, img }) => {
 
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="tasks-container">
+        <h1>loading...</h1>
+      </div>
+    );
+  }
   return (
     <div className={isLoading ? "loading tasks-container" : "tasks-container"}>
       <textarea
