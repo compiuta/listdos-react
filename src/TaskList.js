@@ -8,7 +8,6 @@ const TaskList = ({ listType, listCompleted, message, img }) => {
   const fetchData = () => {
     const parsedData = JSON.parse(localStorage.getItem("listdos"));
     setData(parsedData);
-    console.log(parsedData);
     setIsLoading(false);
   };
 
@@ -28,9 +27,7 @@ const TaskList = ({ listType, listCompleted, message, img }) => {
     };
 
     const newData = { ...data };
-    console.log(newData);
     newData.tasksToComplete++;
-    console.log(`newtocompletee ${newData.tasksToComplete}`);
     newData.data.push(newTask);
     sendData(newData);
 
@@ -89,7 +86,7 @@ const TaskList = ({ listType, listCompleted, message, img }) => {
                 />
               );
             }
-            return;
+            return null;
           })}
         </div>
       ) : (

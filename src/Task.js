@@ -62,7 +62,7 @@ const Task = ({ id, task, complete, allData, sendData }) => {
 
   useEffect(() => {
     toggleComplete();
-  }, [isComplete]);
+  }, [isComplete]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className={isEditMode ? "task-container edit-mode" : "task-container"}>
       <div className="task-wrapper">
