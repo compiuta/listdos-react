@@ -21,11 +21,14 @@ const Task = ({ id, task, complete, allData, sendData }) => {
   };
 
   const deleteTask = () => {
-    const filteredData = allData.data.filter((item) => item.id !== id);
+    let newData = { ...allData };
+    newData.data = newData.data.filter((item) => item.id !== id);
 
-    allData.completedTasks--;
-
-    const newData = { ...allData, data: filteredData }
+    if (complete) {
+      newData.completedTasks--;
+    } else {
+      newData.tasksToComplete--;
+    }
 
     sendData(newData);
   };
