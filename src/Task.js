@@ -25,7 +25,9 @@ const Task = ({ id, task, complete, allData, sendData }) => {
 
     allData.completedTasks--;
 
-    sendData(filteredData);
+    const newData = { ...allData, data: filteredData }
+
+    sendData(newData);
   };
 
   const toggleEditMode = () => {
